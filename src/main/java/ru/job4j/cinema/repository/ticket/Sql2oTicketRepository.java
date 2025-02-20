@@ -1,4 +1,4 @@
-package ru.job4j.cinema.repository;
+package ru.job4j.cinema.repository.ticket;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
@@ -44,8 +44,7 @@ public class Sql2oTicketRepository implements TicketRepository {
     public Optional<Ticket> getTicketBySessionRowNumberAndPlaceNumber(int sessionId, int rowNumber, int placeNumber) {
         try (Connection connection = sql2o.open()) {
             var sql = """
-                    SELECT * FROM tickets WHERE session_id = :sessionId, 
-                    row_number = :rowNumber, place_number = :placeNumber
+                    SELECT * FROM tickets WHERE session_id = :sessionId AND row_number = :rowNumber AND place_number = :placeNumber
                     """;
             var query = connection.createQuery(sql)
                     .addParameter("sessionId", sessionId)

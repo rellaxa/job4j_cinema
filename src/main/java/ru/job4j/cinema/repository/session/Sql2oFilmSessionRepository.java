@@ -1,4 +1,4 @@
-package ru.job4j.cinema.repository;
+package ru.job4j.cinema.repository.session;
 
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
@@ -18,7 +18,7 @@ public class Sql2oFilmSessionRepository implements FilmSessionRepository {
     }
 
     @Override
-    public Optional<FilmSession> findById(int id) {
+    public Optional<FilmSession> getById(int id) {
         try (Connection con = sql2o.open()) {
             var query = con.createQuery("SELECT * FROM film_sessions WHERE id = :id")
                     .addParameter("id", id);

@@ -1,11 +1,9 @@
-package ru.job4j.cinema.repository;
+package ru.job4j.cinema.repository.genre;
 
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import ru.job4j.cinema.model.Genre;
-
-import java.util.Collection;
 
 @Repository
 public class Sql2oGenreRepository implements GenreRepository {
@@ -22,14 +20,6 @@ public class Sql2oGenreRepository implements GenreRepository {
             var query = connection.createQuery("SELECT * FROM genres WHERE id = :id")
                     .addParameter("id", id);
             return query.executeAndFetchFirst(Genre.class);
-        }
-    }
-
-    @Override
-    public Collection<Genre> getGenres() {
-        try (Connection connection = sql2o.open()) {
-            return connection.createQuery("SELECT * FROM genres")
-                    .executeAndFetch(Genre.class);
         }
     }
 }

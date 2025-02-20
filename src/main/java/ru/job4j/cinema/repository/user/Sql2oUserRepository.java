@@ -1,4 +1,4 @@
-package ru.job4j.cinema.repository;
+package ru.job4j.cinema.repository.user;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
@@ -27,8 +27,8 @@ public class Sql2oUserRepository implements UserRepository {
                     .addParameter("fullName", user.getFullName())
                     .addParameter("email", user.getEmail())
                     .addParameter("password", user.getPassword());
-            int idGenerated = query.executeUpdate().getKey(Integer.class);
-            user.setId(idGenerated);
+            int generatedId = query.setColumnMappings(User.COLUMN_MAPPING).executeUpdate().getKey(Integer.class);
+            user.setId(generatedId);
             return Optional.of(user);
         } catch (Sql2oException e) {
             log.error("email: {} already exists", user.getEmail());

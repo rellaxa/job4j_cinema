@@ -1,11 +1,10 @@
-package ru.job4j.cinema.repository;
+package ru.job4j.cinema.repository.hall;
 
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import ru.job4j.cinema.model.Hall;
 
-import java.util.Collection;
 import java.util.Optional;
 
 @Repository
@@ -24,15 +23,6 @@ public class Sql2oHallRepository implements HallRepository {
                     .addParameter("id", id);
             return Optional.ofNullable(query.setColumnMappings(Hall.COLUMN_MAPPING)
                     .executeAndFetchFirst(Hall.class));
-        }
-    }
-
-    @Override
-    public Collection<Hall> getHalls() {
-        try (Connection connection = sql2o.open()) {
-            return connection.createQuery("SELECT * FROM halls")
-                    .setColumnMappings(Hall.COLUMN_MAPPING)
-                    .executeAndFetch(Hall.class);
         }
     }
 }
