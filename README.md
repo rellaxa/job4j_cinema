@@ -1,12 +1,10 @@
 # Project Cinema - job4j_cinema
 
-## Description
-
+## Description:
 Project Cinema is a cinema service that enables users to register, view a list of films and upcoming screenings, and
 purchase tickets.
 
-## Features
-
+## Features:
 - **User Registration & Authorization:** Secure sign-up and login functionality.
 - **Film & Screening Listings:**
     - View a comprehensive list of films.
@@ -15,8 +13,7 @@ purchase tickets.
     - Registered users can purchase tickets.
     - Unregistered users attempting to buy a ticket will be redirected to the login page.
 
-## Technology Stack
-
+## Technology Stack:
 - **Spring Boot:** 3.4.2
 - **PostgreSQL:** 14
 - **H2 Database:** 2.3.232
@@ -27,13 +24,11 @@ purchase tickets.
 - **Lombok:** 1.18.36 for reducing boilerplate code.
 
 ## Environment:
-
 - **Java:** 17
 - **Maven:** 3.8
 - **PostgreSQL:** 14
 
 ## Project Launch
-
 Follow these steps to run the project locally:
 
 1. **Clone the Repository:**
@@ -58,7 +53,6 @@ Follow these steps to run the project locally:
 5. **Access the Application:** Open your browser and navigate to http://localhost:8080.
 
 ## Interaction with the Application
-
 1. **Main:**  
    ![](files/screenshots/main.png)
 
