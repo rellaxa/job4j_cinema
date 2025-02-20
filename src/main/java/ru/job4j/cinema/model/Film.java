@@ -1,5 +1,6 @@
 package ru.job4j.cinema.model;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,6 +9,7 @@ import java.util.Objects;
 
 @Setter
 @Getter
+@Builder
 public class Film {
 
     public static final Map<String, String> COLUMN_MAPPING = Map.of(
@@ -36,19 +38,6 @@ public class Film {
     private int durationInMinutes;
 
     private int fileId;
-
-    public Film() {
-    }
-
-    public Film(String name, String description, int year, int genreId, int minimalAge, int durationInMinutes, int fileId) {
-        this.name = name;
-        this.description = description;
-        this.year = year;
-        this.genreId = genreId;
-        this.minimalAge = minimalAge;
-        this.durationInMinutes = durationInMinutes;
-        this.fileId = fileId;
-    }
 
     @Override
     public boolean equals(Object o) {
