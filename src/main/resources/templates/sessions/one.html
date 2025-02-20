@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Buy Ticket</title>
+    <div th:replace="~{fragments/header :: header}"></div>
+</head>
+<body class="bg-light">
+<div th:replace="~{fragments/navigation :: navigation}"></div>
+
+<div class="container mt-4">
+    <h2 class="mb-4 text-center">Buy Ticket</h2>
+    <div class="row ticket-card align-items-center">
+        <!-- Левая колонка с постером -->
+        <div class="col-md-5 text-center">
+            <img th:src="@{/files/{fileId}(fileId=${filmSession.fileId})}" class="img-fluid rounded" alt="Movie Poster">
+        </div>
+        <!-- Правая колонка с информацией о фильме и формой покупки -->
+        <div class="col-md-7">
+            <h3 th:text="${filmSession.filmName}" class="mb-3">Movie Title</h3>
+            <p>
+                <strong>Hall:</strong> <span th:text="${filmSession.hall.name}">Hall Name</span>
+            </p>
+            <p>
+                <span class="text-muted">Start: <span th:text="${filmSession.startTime}">Start Time</span></span>
+            </p>
+            <p>
+                <span class="text-muted">End: <span th:text="${filmSession.endTime}">End Time</span></span>
+            </p>
+
+            <form class="mt-4" th:action="@{/tickets/buy}" method="post" th:object="${ticket}">
+                <!-- Скрытые поля для передачи идентификаторов -->
+                <input type="hidden" th:name="sessionId" th:value="${filmSession.id}" />
+                <input type="hidden" th:name="userId" th:value="1" />
+
+                <div class="row g-3">
+                    <!-- Выбор ряда -->
+                    <div class="col-md-6">
+                        <label for="rowNumber" class="form-label"><b>Row:</b></label>
+                        <select class="form-select" id="rowNumber" name="rowNumber" th:field="*{rowNumber}">
+                            <option th:each="i : ${#numbers.sequence(1, filmSession.hall.rowCount)}"
+                                    th:value="${i}" th:text="${i}"></option>
+                        </select>
+                    </div>
+                    <!-- Выбор места -->
+                    <div class="col-md-6">
+                        <label for="placeNumber" class="form-label"><b>Place:</b></label>
+                        <select class="form-select" id="placeNumber" name="placeNumber" th:field="*{placeNumber}" >
+                            <option th:each="i : ${#numbers.sequence(1, filmSession.hall.placeCount)}"
+                                    th:value="${i}" th:text="${i}"></option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <a class="btn btn-outline-secondary w-100" th:href="@{/sessions}">Cancel</a>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-success w-100">Buy Ticket</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

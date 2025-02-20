@@ -1,0 +1,64 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Films</title>
+    <div th:replace="~{fragments/header :: header}"></div>
+</head>
+<body class="bg-light">
+
+<!-- Навигационное меню -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/">Cinema</a>
+        <div class="collapse navbar-collapse">
+            <div class="navbar-nav me-auto">
+                <!--                    <a class="nav-item nav-link active" href="/">Главная</a>-->
+                <a class="nav-item nav-link" th:href="@{/sessions}">Sessions</a>
+                <a class="nav-item nav-link active" th:href="@{/films}">Movies</a>
+            </div>
+        </div>
+        <div class="d-flex" th:if="${user.fullName == 'Гость'}">
+            <a class="nav-link text-secondary  me-3" th:href="@{/users/register}">Sign up</a>
+            <a class="nav-link text-secondary" th:href="@{/users/login}">Login</a>
+        </div>
+        <div class="d-flex" th:if="${user.fullName != 'Гость'}">
+            <a class="nav-link text-secondary me-3" href="#" th:text="${user.fullName}"></a>
+            <a class="nav-link text-secondary" th:href="@{/users/logout}">Log out</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Контейнер для списка фильмов -->
+<div class="container mt-4">
+    <h2 class="mb-4">Movies</h2>
+    <div th:each="film : ${films}" class="movie-item row align-items-center">
+        <!-- Левая колонка с постером -->
+        <div class="col-md-4">
+            <img th:src="@{/files/{fileId}(fileId=${film.fileId})}" class="movie-poster" alt="Постер фильма">
+        </div>
+        <!-- Правая колонка с информацией о фильме -->
+        <div class="col-md-5">
+            <h3 th:text="${film.name}">Название фильма</h3>
+            <p>
+                <strong>Release date:</strong> <span th:text="${film.year}">2023</span>
+            </p>
+            <p>
+                <strong>Genre:</strong> <span th:text="${film.genre}">Драма</span>
+            </p>
+            <p>
+                <strong>Description:</strong> <span th:text="${film.description}">Описание фильма...</span>
+            </p>
+            <p>
+                <strong>Duration:</strong> <span th:text="${film.durationInMinutes}">120</span> mins.
+            </p>
+            <p>
+                <strong>PG:</strong>
+                <span class="age-badge">
+                    <span th:text="${film.minimalAge}">18</span>+
+                </span>
+            </p>
+        </div>
+    </div>
+</div>
+
+</body>

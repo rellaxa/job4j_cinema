@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ticket Purchase Success</title>
+</head>
+<div th:replace="~{fragments/header :: header}"></div>
+<style>
+    .card {
+        transition: none !important;
+    }
+    .card:hover {
+        transform: none !important;
+    }
+</style>
+<body class="bg-light">
+<div th:replace="~{fragments/navigation :: navigation}"></div>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-success text-white text-center">
+                    <h3>Ticket Purchased Successfully!</h3>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Your Ticket Details</h4>
+                    <div class="mb-3">
+                        <strong>Film:</strong>
+                        <span th:text="${filmSession.filmName}">Film Name</span>
+                    </div>
+                    <div class="mb-3">
+                        <strong>Hall:</strong>
+                        <span th:text="${filmSession.hall.name}">Hall Name</span>
+                    </div>
+                    <div class="mb-3">
+                        <strong>Start Time:</strong>
+                        <span th:text="${#temporals.format(filmSession.startTime, 'dd.MM.yyyy HH:mm')}">Start Time</span>
+                    </div>
+                    <div class="mb-3">
+                        <strong>End Time:</strong>
+                        <span th:text="${#temporals.format(filmSession.endTime, 'dd.MM.yyyy HH:mm')}">End Time</span>
+                    </div>
+                    <div class="mb-3">
+                        <strong>Row:</strong>
+                        <span th:text="${ticket.rowNumber}">Row number</span>
+                    </div>
+                    <div class="mb-3">
+                        <strong>Place:</strong>
+                        <span th:text="${ticket.placeNumber}">Place number</span>
+                    </div>
+                </div>
+                <div class="card-footer text-center">
+                    <a href="/" class="btn btn-primary me-2">Back to Home</a>
+                    <a href="/sessions" class="btn btn-secondary">View Sessions</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Подключение Bootstrap JS (опционально, если нужны компоненты) -->
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
