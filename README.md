@@ -1,7 +1,5 @@
 # Project Cinema - job4j_cinema
 
----
-
 ## Description
 
 Project Cinema is a cinema service that enables users to register, view a list of films and upcoming screenings, and
@@ -34,8 +32,6 @@ purchase tickets.
 - **Maven:** 3.8
 - **PostgreSQL:** 14
 
----
-
 ## Project Launch
 
 Follow these steps to run the project locally:
@@ -60,8 +56,6 @@ Follow these steps to run the project locally:
 - Or run the Job4jCinemaApplication main class directly from your IDE.
 
 5. **Access the Application:** Open your browser and navigate to http://localhost:8080.
-
----
 
 ## Interaction with the Application
 
