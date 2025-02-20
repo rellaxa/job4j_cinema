@@ -5,7 +5,7 @@
 ## Description
 
 Project Cinema is a cinema service that enables users to register, view a list of films and upcoming screenings, and
-purchase tickets. While anyone can browse the film schedule, only registered users are allowed to buy tickets.
+purchase tickets.
 
 ## Features
 
