@@ -21,10 +21,14 @@
                 <strong>Hall:</strong> <span th:text="${filmSession.hall.name}">Hall Name</span>
             </p>
             <p>
-                <span class="text-muted">Start: <span th:text="${filmSession.startTime}">Start Time</span></span>
+                <span class="text-muted">Start:
+                    <span th:text="${#temporals.format(filmSession.startTime, 'dd.MM.yyyy HH:mm')}">Start Time</span>
+                </span>
             </p>
             <p>
-                <span class="text-muted">End: <span th:text="${filmSession.endTime}">End Time</span></span>
+                <span class="text-muted">End:
+                    <span th:text="${#temporals.format(filmSession.endTime, 'dd.MM.yyyy HH:mm')}">End Time</span>
+                </span>
             </p>
 
             <form class="mt-4" th:action="@{/tickets/buy}" method="post" th:object="${ticket}">
